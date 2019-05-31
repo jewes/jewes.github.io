@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        Numpy笔记｜Mingjiang&#39;s blog
+        Numpy基本概念｜Mingjiang&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="http://jewes.github.io/2019/05/30/numpy-notes/">
+    <link rel="canonical" href="http://jewes.github.io/2019/05/30/numpy-basic/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -136,7 +136,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>Numpy笔记</h1>
+                    <h1>Numpy基本概念</h1>
                     
                     <span class="meta">
                          作者 Mingjiang Shi
@@ -155,7 +155,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            Numpy笔记
+            Numpy基本概念
         </span>
     </div>
 </header>
@@ -166,42 +166,32 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <p>numpy是机器学习中非常重要的软件包，本文是我的一些笔记和理解，希望对你也有帮助。</p>
+                <p>numpy是机器学习中非常重要和基础的软件包，它提供了机器学习中基本的数据结构（向量）的各种高效操作。本系列记录我在学习过程中的一些心得。</p>
 <h1 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h1><p>首先，numpy中操作的基本对象是向量，向量类似于编程的数组。向量有几个非常重要的基本概念，必须要搞清楚，否则后面对向量的各种操作都很难理解。</p>
 <h2 id="维度-dimension"><a href="#维度-dimension" class="headerlink" title="维度(dimension)"></a>维度(dimension)</h2><p>我们来看几个例子：</p>
 <p>对于一维向量<code>a = [1,2,3,4]</code>（可理解为数组），我们要找到其中的一个元素使用a[i]，只需要指定一个索引就够了，比如<code>a[0] = 1</code>。</p>
 <p>对于二维向量（可理解为矩阵），找到其中的一个元素需要至少两个索引，比如<code>a[0][0] = 1</code>。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line">[1, 2, 3],</span><br><span class="line">[4, 5, 6],</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <p>维度的直观理解是：找到向量中的一个元素所需要索引数量的最小个数。</p>
+<h2 id="axis"><a href="#axis" class="headerlink" title="axis"></a>axis</h2><p>numpy中的很多函数都有axis这个参数，所以axis也非常有必要理解清楚。 axis可以认为是对维度的索引（从0开始）。axis=0，表示第1维，依次类推。axis=-1表示最高的维度。结合上面shape的理解中，axis=0表示向量中的最外层，axis=-1表示向量中的最里层。后面结合具体的函数再细讲。</p>
 <h2 id="shape"><a href="#shape" class="headerlink" title="shape"></a>shape</h2><p>shape的中文意思是形状，它表示的是向量在各个维度上元素的个数。</p>
-<p>一维向量<code>[1,2,3]</code>，它的维度是1维，shape是(3)。向量(1,2,3,4)，它的维度也是1维，但它的shape就是(4)。</p>
+<p>一维向量<code>[1,2,3]</code>，它的维度是1维，shape是(3,)。向量(1,2,3,4)，它的维度也是1维，但它的shape就是(4,)。</p>
 <p>上面的二维向量，它的维度是2，shape是（2, 3）。2是怎么来的？假如把最外层的[]去掉，我们得到两个一维向量，所以第1维的shape是2。类似的，3是第二层中向量元素的个数。</p>
 <p>对于N维向量，它的shape可以从最里层开始看起。最里层[]中的元素个数就是shape中最右边的那个值。然后将最里层的向量看成一个数字，以此类推。</p>
-<h2 id="axis"><a href="#axis" class="headerlink" title="axis"></a>axis</h2><p>numpy中的很多函数都有axis这个参数，所以axis也非常有必要理解清楚。 axis可以认为是对维度的索引（从0开始）。axis=0，表示第1维，依次类推。axis=-1表示最高的维度。结合上面shape的理解中，axis=0表示向量中的最外层，axis=-1表示向量中的最里层。后面结合具体的函数再细讲。</p>
 <h2 id="size"><a href="#size" class="headerlink" title="size"></a>size</h2><p>size表示向量中有多少个元素，也就是shape的各个值相乘。</p>
-<p>简单总结一下，dimension表示这个几层中括号，shape表示每层有多少个元素，axis指的哪一层。这个定义不准确，只是帮助理解。</p>
+<p>简单总结一下，dimension表示这个向量有几层中括号，shape表示每层有多少个元素，axis指的哪一层。这个定义不准确，只是帮助理解。</p>
+<h1 id="向量的创建"><a href="#向量的创建" class="headerlink" title="向量的创建"></a>向量的创建</h1><p>在python中，我们知道<code>[1, 2, 3]</code>是一个list。numpy中向量虽然也写成这样的形式，但是向量和python中的list不是等同的。表示向量的类是ndarray。</p>
+<p>刚开始可能不太理解Numpy中array和ndarray的区别，numpy中没有array类，只有array()方法。通过array()方法，我们可以将python的list转成ndarray。</p>
 <h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; import numpy as np</span><br><span class="line">&gt;&gt;&gt; a = np.array([1,2])</span><br><span class="line">&gt;&gt;&gt; b = np.array([[1,2],[3,4]])</span><br><span class="line">&gt;&gt;&gt; a.ndim, b.ndim</span><br><span class="line">(1, 2)</span><br><span class="line">&gt;&gt;&gt; a.shape</span><br><span class="line">(2,)</span><br><span class="line">&gt;&gt;&gt; b.shape</span><br><span class="line">(2, 2)</span><br><span class="line">&gt;&gt;&gt; a.size</span><br><span class="line">2</span><br><span class="line">&gt;&gt;&gt; b.size</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
-<h1 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h1><h2 id="reshape"><a href="#reshape" class="headerlink" title="reshape"></a>reshape</h2><p>reshape顾名思义就是重新调整向量的shape。reshape后要保证向量的size（也就是元素个数不变）。比如12个元素组成一维向量，其shape是(12,)，可以reshape为(2,6),(6,2),(3,4),(4,3)，但是不能reshape为(2,5)，因为元素数量不对了。那reshape具体是怎么操作的呢？我们来看例子。</p>
-<p>一维向量<code>a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]</code>要reshape为(2,6)。我们从左边开始看起，最左边的维度的shape是2，那边表示最外层包含2个元素，那么就相当于把a的12个元素分成了2份，正好每份6个元素，组成了第二维。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line"> [ 1,  2,  3,  4,  5,  6],</span><br><span class="line"> [ 7,  8,  9, 10, 11, 12]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; a = np.array([i for i in range(1,13)])</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">array([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12])</span><br><span class="line">&gt;&gt;&gt; a.reshape(2,6)</span><br><span class="line">array([[ 1,  2,  3,  4,  5,  6],</span><br><span class="line">       [ 7,  8,  9, 10, 11, 12]])</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
-<p>继续，我们把a reshape为(2,3,2)，还是先从新的shape的最左边开始，最左边为2，于是将其分成2份，变成了</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line"> [ 1,  2,  3,  4,  5,  6],</span><br><span class="line"> [ 7,  8,  9, 10, 11, 12]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>接着，第二维的shape维3，于是将第一维中的元素分成3份，每份正好是2个元素，于是，</p>
-<p><code>[1,2,3,4,5,6]</code>变成了</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line"> [ 1,  2],</span><br><span class="line"> [ 3,  4],</span><br><span class="line"> [ 5,  6]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p><code>[ 7,  8,  9, 10, 11, 12]</code>变成了</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line"> [ 7,  8],</span><br><span class="line"> [ 9, 10],</span><br><span class="line"> [11, 12]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>最后，再把它们放回去，于是<code>a.reshape(2,3,2)</code>变成了</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line"> [</span><br><span class="line">  [ 1,  2],</span><br><span class="line">  [ 3,  4],</span><br><span class="line">  [ 5,  6]</span><br><span class="line"> ],</span><br><span class="line"> [</span><br><span class="line">  [ 7,  8],</span><br><span class="line">  [ 9, 10],</span><br><span class="line">  [11, 12]</span><br><span class="line"> ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>你可以试着推导一下a.reshape(4,3)的结果是否和程序跑出来的一致。</p>
-<p>待续…</p>
 
                 <hr>
                 
 
                 <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2019/05/31/numpy-expand_dims/" data-toggle="tooltip" data-placement="top" title="Numpy expand_dims">&larr; Previous Post</a>
+                    </li>
                     
                     
                     <li class="next">
@@ -224,7 +214,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基础概念"><span class="toc-text">基础概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#维度-dimension"><span class="toc-text">维度(dimension)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shape"><span class="toc-text">shape</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#axis"><span class="toc-text">axis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#size"><span class="toc-text">size</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#例子"><span class="toc-text">例子</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常用方法"><span class="toc-text">常用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#reshape"><span class="toc-text">reshape</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基础概念"><span class="toc-text">基础概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#维度-dimension"><span class="toc-text">维度(dimension)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#axis"><span class="toc-text">axis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shape"><span class="toc-text">shape</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#size"><span class="toc-text">size</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#向量的创建"><span class="toc-text">向量的创建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#例子"><span class="toc-text">例子</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
