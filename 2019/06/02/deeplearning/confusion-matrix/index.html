@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        Mingjiang&#39;s blog
+        Confusion Matrix｜Mingjiang&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="http://jewes.github.io/tags/numpy/">
+    <link rel="canonical" href="http://jewes.github.io/2019/06/02/deeplearning/confusion-matrix/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -43,7 +43,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="false" data-istags="true
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="true" data-istags="false
 " data-ishome="false">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -116,220 +116,203 @@
 
 <!-- Main Content -->
 
+<!--only post-->
 
-<!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
-    <div class="row">
-        <header class="intro-header">
-            <div class="container">
-                <div class="site-heading text-center">
-                    <div class="about-me">
-                        <!--移动端头部显示-->
-                        <img src>
-                        <h5><a href="/about/">Mingjiang Shi</a></h5>
-                        <p></p>
+
+<img class="wechat-title-img" src>
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>Confusion Matrix</h1>
+                    
+                    <span class="meta">
+                         作者 Mingjiang Shi
+                        <span>
+                          日期 2019-06-02
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#deep learning" title="deep learning">deep learning</a>
+                        
                     </div>
                 </div>
             </div>
-        </header>
-    </div>
-</div>
-<!-- Main Content -->
-<div class="container custom-haojen-container">
-    <!-- Post Container -->
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            <!-- Main Content -->
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2019/06/02/numpy-indexing/">
-        <h2 class="post-title">
-            Numpy Indexing
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-06-02
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                Numpy Indexing从numpy的向量中取得需要的元素与从数组中取得元素类似，不过numpy提供了更高级的玩法，一起来看看。
-一维向量假设有向量a=[1,2,3,4]，从a中取得部分元素的方法有：
-
-从中取出一个元素用a[i]，i表示索引。
-从中连续的多个元素，比如取出前三个元素，则使用..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2019/05/31/numpy-reshape/">
-        <h2 class="post-title">
-            Numpy reshape
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-05-31
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                reshapereshape顾名思义就是重新调整向量的shape。reshape后要保证向量的size（也就是元素个数不变）。比如12个元素组成一维向量，其shape是(12,)，可以reshape为(2,6),(6,2),(3,4),(4,3)，但是不能reshape为(2,5)，因为元素数量..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2019/05/31/numpy-expand_dims/">
-        <h2 class="post-title">
-            Numpy expand_dims
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-05-31
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                expand_dimsexpand_dims顾名思义就是扩展向量的维度。我们还是先一个例子来理解这个吧。
-向量a = [1, 2, 3, 4]，其维度为1，其shape为(4,)。
-执行numpu.expand_dims(a, axis=0)表示在第1维前再增加1个维度，新的向量就变成了2维。由..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2019/05/30/numpy-basic/">
-        <h2 class="post-title">
-            Numpy基本概念
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-05-30
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                numpy是机器学习中非常重要和基础的软件包，它提供了机器学习中基本的数据结构（向量）的各种高效操作。本系列记录我在学习过程中的一些心得。
-基础概念首先，numpy中操作的基本对象是向量，向量类似于编程的数组。向量有几个非常重要的基本概念，必须要搞清楚，否则后面对向量的各种操作都很难理解。
-维度..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-
-<!-- 翻页 pager -->
-
-<ul class="pager">
-    
-    
-</ul>
-
-
-        </div>
-        <!-- Sidebar Container -->
-        <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-
-            <!-- About Me -->
-            <section class="visible-md visible-lg" style="padding: 0 18px">
-                <div class="short-about">
-                    <!--侧边栏头像-->
-                    
-                    <h5><a href="/about/">Mingjiang Shi</a></h5>
-                    
-                    <hr>
-                    <!-- SNS Link 社交 -->
-                    <ul class="list-inline">
-                        
-                        
-                        <li>
-                            <a target="_blank" href="https://twitter.com/jewes">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-                        
-
-                        
-                        <li>
-                            <a target="_blank" href="http://weibo.com/mjshi">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-
-                        
-
-                        
-                        <li>
-                            <a target="_blank" href="https://github.com/jewes">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-
-                        
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Featured Tags  标签 -->
-            
-            <section>
-                <div class="tags">
-                    
-                    
-                    <a href="/tags/#numpy" title="numpy" rel="4">numpy</a>
-                    
-                    
-                    
-                    
-                </div>
-            </section>
-            
-
-            
-
         </div>
     </div>
-</div>
+    <div class="post-title-haojen">
+        <span>
+            Confusion Matrix
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>在多分类任务中，confusion matrix是一种比较好的方式看查看分类器的性能的指标。</p>
+<p>以下为一个confusion matrix的示例，分类器将输入分成三类，分别是ABC。</p>
+<table>
+<thead>
+<tr>
+<th>category</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>90</td>
+<td>5</td>
+<td>5</td>
+</tr>
+<tr>
+<td>B</td>
+<td>0</td>
+<td>95</td>
+<td>5</td>
+</tr>
+<tr>
+<td>C</td>
+<td>2</td>
+<td>0</td>
+<td>98</td>
+</tr>
+</tbody>
+</table>
+<p>confusion matrix中的每行表示该分类被分到每个类别中的数量。比如第一行表示A被分类到其他分类的数量，其中90个被正确地分到A中，另外各有5个被分到B和C中。理想的分类器的confusion matrix应该只有对角线上有元素，其他地方都是0，表示每个分类都完全正确。</p>
+<p>有了confusion matrix，我们还可以计算每个分类的recall和precision。</p>
+<table>
+<thead>
+<tr>
+<th>category</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>recall</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>90</td>
+<td>5</td>
+<td>5</td>
+<td>90/(90+5+5)=90%</td>
+</tr>
+<tr>
+<td>B</td>
+<td>0</td>
+<td>95</td>
+<td>5</td>
+<td>95/(0+95+5)=95%</td>
+</tr>
+<tr>
+<td>C</td>
+<td>2</td>
+<td>0</td>
+<td>98</td>
+<td>98/(2+0+98)=98%</td>
+</tr>
+<tr>
+<td>precision</td>
+<td>90/92=97.8%</td>
+<td>95%</td>
+<td>98/(5+5+98) = 90.7%</td>
+<td>accuracy=94.3%</td>
+</tr>
+</tbody>
+</table>
+<p>recall就是召回率，表示分类正确的数量除以该分类总的数量。比如，A总共有100个样本，只有90个被正确分类，因此召回率就是90%。在confusion matrix中，只需要将对角线上的元素除以该行的和就是该分类的召回率。</p>
+<p>precision就是精确率，表示分类到某个分类中有多少是真正属于该分类的。看上面的confusion matrix，总共有92个元素分类到A中，其中真正属于A有90个，因此A的精确率就是90/92=97.8。在confusion matrix中，只需要将对角线的元素除以该列的和就是该分类的精确率。</p>
+<p>除了recall和precision以外，我们还可以在confusion中计算accuracy，accuracy表示分类正确的元素数量除以总的数量。上述例子中就是对角线上的元素和除以总的元素(90+95+98)/300 = 94.3%。</p>
+<p>通过confusion matrix，我们可以很直观第看到每个分类的recall和precision，还能看到错误分类的情况。有了我们对分类器的性能有更进一步的认识了，这比只有一个accuracy指标要好很多了。</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2019/06/02/numpy-indexing/" data-toggle="tooltip" data-placement="top" title="Numpy Indexing">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#deep learning" title="deep learning">deep learning</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
 
 <!-- Footer -->
 <!-- Footer -->
