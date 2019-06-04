@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        Mingjiang&#39;s blog
+        Extact frames from video using ffmpeg｜Mingjiang&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="http://jewes.github.io/archives/2019/05/">
+    <link rel="canonical" href="http://jewes.github.io/2019/06/04/ffmpeg_frames/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -43,7 +43,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="false" data-istags="false
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="true" data-istags="false
 " data-ishome="false">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -116,221 +116,134 @@
 
 <!-- Main Content -->
 
+<!--only post-->
 
-<!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
-    <div class="row">
-        <header class="intro-header">
-            <div class="container">
-                <div class="site-heading text-center">
-                    <div class="about-me">
-                        <!--移动端头部显示-->
-                        <img src>
-                        <h5><a href="/about/">Mingjiang Shi</a></h5>
-                        <p></p>
+
+<img class="wechat-title-img" src>
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>Extact frames from video using ffmpeg</h1>
+                    
+                    <span class="meta">
+                         作者 Mingjiang Shi
+                        <span>
+                          日期 2019-06-04
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#shell" title="shell">shell</a>
+                        
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
     </div>
-</div>
-<!-- Main Content -->
-<div class="container custom-haojen-container">
-    <!-- Post Container -->
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            <!-- Main Content -->
+    <div class="post-title-haojen">
+        <span>
+            Extact frames from video using ffmpeg
+        </span>
+    </div>
+</header>
 
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2019/05/31/numpy-reshape/">
-        <h2 class="post-title">
-            Numpy reshape
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-05-31
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                reshapereshape顾名思义就是重新调整向量的shape。reshape后要保证向量的size（也就是元素个数不变）。比如12个元素组成一维向量，其shape是(12,)，可以reshape为(2,6),(6,2),(3,4),(4,3)，但是不能reshape为(2,5)，因为元素数量..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2019/05/31/numpy-expand_dims/">
-        <h2 class="post-title">
-            Numpy expand_dims
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-05-31
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                expand_dimsexpand_dims顾名思义就是扩展向量的维度。我们还是先一个例子来理解这个吧。
-向量a = [1, 2, 3, 4]，其维度为1，其shape为(4,)。
-执行numpu.expand_dims(a, axis=0)表示在第1维前再增加1个维度，新的向量就变成了2维。由..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2019/05/30/numpy-basic/">
-        <h2 class="post-title">
-            Numpy基本概念
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-05-30
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                numpy是机器学习中非常重要和基础的软件包，它提供了机器学习中基本的数据结构（向量）的各种高效操作。本系列记录我在学习过程中的一些心得。
-基础概念首先，numpy中操作的基本对象是向量，向量类似于编程的数组。向量有几个非常重要的基本概念，必须要搞清楚，否则后面对向量的各种操作都很难理解。
-维度..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2019/05/26/new_start/">
-        <h2 class="post-title">
-            重新开始
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-05-26
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                在CSDN上断断续续写了些博客，也算是它的忠实用户。可惜的是CSDN的路子越走越偏。作为一名程序员，在Github上搭建一个博客是标配。于是，放弃了多年使用的CSDN博客，重新开始！
-本着互联网的的迭代开发的思想，先让系统跑起来。以下为博客的基本配置，供参考：
-
-采用Hexo作为博客内容的转换工..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-
-<!-- 翻页 pager -->
-
-<ul class="pager">
-    
-    
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>记录一下，用ffmpeg从视频文件中提取frame:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ffmpeg </span><br><span class="line">-i &lt;input file&gt;</span><br><span class="line">-vf &quot;scale=1280:720,fps=2.5&quot;</span><br><span class="line">-q:v 1</span><br><span class="line">image-%05d.jpg</span><br></pre></td></tr></table></figure>
+<p>各选项的作用：</p>
+<ul>
+<li><code>-i</code> 指定输入的视频文件</li>
+<li><code>-vf &quot;scale=1280:720,fps=2.5&quot;</code> 将提取出的图片缩放为1280x720, fps=2.5表示平均每秒钟提取2.5张图片</li>
+<li><code>-q:v 1</code> 表示jpg图片的质量，可选值从1-31, 数值越小质量越高</li>
+<li>最后的<code>image-%5d.jpg</code> 表示指定输出文件的文件名，image为前缀，%05d为序号。</li>
 </ul>
+<p>暂时只用到了这些选项，以后再补充。</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2019/06/02/deeplearning/confusion-matrix/" data-toggle="tooltip" data-placement="top" title="Confusion Matrix">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
 
 
-        </div>
-        <!-- Sidebar Container -->
-        <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                <!--加入新的评论系统-->
+                
 
-            <!-- About Me -->
-            <section class="visible-md visible-lg" style="padding: 0 18px">
-                <div class="short-about">
-                    <!--侧边栏头像-->
-                    
-                    <h5><a href="/about/">Mingjiang Shi</a></h5>
-                    
-                    <hr>
-                    <!-- SNS Link 社交 -->
-                    <ul class="list-inline">
-                        
-                        
-                        <li>
-                            <a target="_blank" href="https://twitter.com/jewes">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-                        
+                
 
-                        
-                        <li>
-                            <a target="_blank" href="http://weibo.com/mjshi">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
+            </div>
 
-                        
-
-                        
-                        <li>
-                            <a target="_blank" href="https://github.com/jewes">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-
-                        
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Featured Tags  标签 -->
-            
-            <section>
-                <div class="tags">
-                    
-                    
-                    
-                    
-                    <a href="/tags/#numpy" title="numpy" rel="4">numpy</a>
-                    
-                    
-                    
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
                     
                 </div>
-            </section>
-            
-
-            
-
+            </div>
         </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#shell" title="shell">shell</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
     </div>
-</div>
+</article>
+
+
+
+
+
+
 
 <!-- Footer -->
 <!-- Footer -->

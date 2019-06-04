@@ -144,6 +144,33 @@
 
 
 <div class="post-preview " style="background-image: url('')">
+    <a href="/2019/06/04/ffmpeg_frames/">
+        <h2 class="post-title">
+            Extact frames from video using ffmpeg
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-06-04
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                记录一下，用ffmpeg从视频文件中提取frame:
+ffmpeg -i &lt;input file&gt;-vf &quot;scale=1280:720,fps=2.5&quot;-q:v 1image-%05d.jpg
+各选项的作用：
+
+-i 指定输入的视频文件
+-vf &quot;sc..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview " style="background-image: url('')">
     <a href="/2019/06/02/deeplearning/confusion-matrix/">
         <h2 class="post-title">
             Confusion Matrix
@@ -393,6 +420,8 @@ c..
             
             <section>
                 <div class="tags">
+                    
+                    
                     
                     
                     <a href="/tags/#numpy" title="numpy" rel="4">numpy</a>
