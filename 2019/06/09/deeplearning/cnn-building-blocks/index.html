@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        Extact frames from video using ffmpeg｜Mingjiang&#39;s blog
+        CNN Building Blocks - Basic｜Mingjiang&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="http://jewes.github.io/2019/06/04/ffmpeg_frames/">
+    <link rel="canonical" href="http://jewes.github.io/2019/06/09/deeplearning/cnn-building-blocks/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -136,17 +136,17 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>Extact frames from video using ffmpeg</h1>
+                    <h1>CNN Building Blocks - Basic</h1>
                     
                     <span class="meta">
                          作者 Mingjiang Shi
                         <span>
-                          日期 2019-06-04
+                          日期 2019-06-09
                          </span>
                     </span>
                     <div class="tags text-center">
                         
-                        <a class="tag" href="/tags/#shell" title="shell">shell</a>
+                        <a class="tag" href="/tags/#deeplearning" title="deeplearning">deeplearning</a>
                         
                     </div>
                 </div>
@@ -155,7 +155,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            Extact frames from video using ffmpeg
+            CNN Building Blocks - Basic
         </span>
     </div>
 </header>
@@ -166,29 +166,48 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <p>记录一下，用ffmpeg从视频文件中提取frame:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ffmpeg </span><br><span class="line">-i &lt;input file&gt;</span><br><span class="line">-vf &quot;scale=1280:720,fps=2.5&quot;</span><br><span class="line">-q:v 1</span><br><span class="line">image-%05d.jpg</span><br></pre></td></tr></table></figure>
-<p>各选项的作用：</p>
+                <h2 id="卷积操作"><a href="#卷积操作" class="headerlink" title="卷积操作"></a>卷积操作</h2><p>CNN中的C是Convolutional，也就是卷积。我们首先来看看卷积是什么含义。假设有一根针掉在铺面马赛克的地板上，由于针太小，马赛克的颜色也比较暗，我们无法一眼找到针在哪里。于是我们拿着一个特制的方形有色镜片（该镜片可以过滤到不相干的颜色，有助于看清楚针）在地上从左到右，从上到下，一格一格地找。最终，我们是一定可以找到针的。CNN的卷积操作和这个例子非常类似。我们首先定义下相关的概念。</p>
 <ul>
-<li><code>-i</code> 指定输入的视频文件</li>
-<li><code>-vf &quot;scale=1280:720,fps=2.5&quot;</code> 将提取出的图片缩放为1280x720, fps=2.5表示平均每秒钟提取2.5张图片</li>
-<li><code>-q:v 1</code> 表示jpg图片的质量，可选值从1-31, 数值越小质量越高</li>
-<li>最后的<code>image-%5d.jpg</code> 表示指定输出文件的文件名，image为前缀，%05d为序号。</li>
+<li>kernel：有的文献中也叫filter，kernel是一个<code>k x k</code>的矩阵，它就类似上面例子中的有色镜片，可以从图片中提取出相应的特征。</li>
+<li>stride: 类似上面的例子，stride表示kernel在图片上移动时，每次移动几个格子。</li>
 </ul>
-<p>暂时只用到了这些选项，以后再补充。</p>
+<p>有了上面两个概念，我们来看个例子，假设我们有下面这个3x3的kernel:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line">  [0, 1, 2],</span><br><span class="line">  [2, 2, 0],</span><br><span class="line">  [0, 1, 2]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>利用这个kernel对下图进行卷积操作的过程如下图所示：</p>
+<p><img src="cnn-building-blocks/cnn1.png" alt></p>
+<p>图片来自：<a href="https://arxiv.org/pdf/1603.07285.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1603.07285.pdf</a></p>
+<p>首先，将kernel与左上角对齐，由于kernel的尺寸为3x3，所以它覆盖了图片左上角的3x3个像素，将对应位置的数值相乘后相加即可得到右边图片左上角格子上的值。然后依次从左往右，从上往下移动kernel对剩下的像素进行卷积操作，即可得到最右下角的最终结果。</p>
+<p>从上图中，我们可以看到原图的9个像素经过卷积操作后变成了目标图的1个像素，这是一个多对一的操作。卷积操作是从原图中提取特征，经过卷积操作后得到的3x3矩阵叫做feature map（特征图）。</p>
+<h3 id="stride有什么用？"><a href="#stride有什么用？" class="headerlink" title="stride有什么用？"></a>stride有什么用？</h3><p>上图中stride为1，即kernel每次移动一个像素。如果stride为2的话，kernel每次移动2个像素，这样最终得到的feature map就只有2x2了。</p>
+<h3 id="如果输入图不止一个通道呢？"><a href="#如果输入图不止一个通道呢？" class="headerlink" title="如果输入图不止一个通道呢？"></a>如果输入图不止一个通道呢？</h3><p>上图中，图片只有1个通道，可以认为是黑白图。对于彩色图片，有RGB三个通道，卷积操作有什么变化呢？</p>
+<ol>
+<li><p>输入图片有c个通道，那么kernel也需要有c个通道，也就是说kernel变成了三维，其shape变成了(k, k, c)，可以理解为c个<code>k x k</code>大小的kernel的重叠在一起（注意：它们还是一个kernel）。卷积运算就是将c个<code>k x k</code>的kernel分别与输入图的c个通道的对应位置的数值相乘后再相加。参见下图。</p>
+<p> <img src="cnn-building-blocks/kernel_3d.png" alt></p>
+<p> 图片来自：<a href="https://machinethink.net" target="_blank" rel="noopener">https://machinethink.net</a></p>
+</li>
+<li><p>最终得到特征图的维度还是二维的。</p>
+</li>
+</ol>
+<h3 id="如果有多个kernel呢？"><a href="#如果有多个kernel呢？" class="headerlink" title="如果有多个kernel呢？"></a>如果有多个kernel呢？</h3><p>从上面可以看到一个kernel只提取一种特征，因为kernel的参数是确定的。如果我们需要提取多种特征，就需要多个kernel。那么最终得到的feature map也就变成了3维了，可以看成是每个kernel提取特征得到的feature map的叠加。如下图所示：</p>
+<p><img src="cnn-building-blocks/cnn2.png" alt></p>
+<p>图片来自：<a href="https://arxiv.org/pdf/1603.07285.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1603.07285.pdf</a></p>
+<p>最下方为输入图，该输入图为有2个通道，经过三个kernel（注意：每个kernel也是有2个通道的）处理后，每个kernel得到一个3x3的feature map，将他们叠加在一起后得到一个长宽均为3，有3个通道的feature map。</p>
+<h3 id="padding是什么？"><a href="#padding是什么？" class="headerlink" title="padding是什么？"></a>padding是什么？</h3><p>padding就是在输入图的四周补0，从而增加输入图的长宽，padding = 1则补一圈0，长宽各增加1。合理选择padding, kernel和stride的大小，可以使得输出图的长宽与输入图的长宽保持一致。</p>
+<h3 id="卷积操作的参数量和计算量"><a href="#卷积操作的参数量和计算量" class="headerlink" title="卷积操作的参数量和计算量"></a>卷积操作的参数量和计算量</h3><p>我们来看看卷积操作需要的参数数量和计算量。我们都用<code>w * h * c</code>的格式来表示图像的长宽和通道数，为了简化，我们将认为图像的长宽相同。假设输入的图像为<code>Di x Di * M</code>, 输出的图像为<code>Dj * Dj * N</code>，kernel的shape为<code>K * K * M</code>，总共需要N个这样的Kernel。记住一点：<strong>Kernel的通道数与输入图像的通道数一致，Kernel的个数与输出通道数一致。</strong></p>
+<p>由此可见，一个卷积操作的参数量为<code>K * K * M * N</code>，<strong>kernel中的每个值都是需要训练的参数</strong>。如果考虑偏置量的话，则再加上N（每个输出通道上增加1个参数），在比较参数量的时候通常忽略偏置量。</p>
+<p>卷积操作的计算量怎么计算呢？我们从输出图像的角度来考虑，输出图像总共有<code>Dj * Dj * N</code>个值需要计算，每个值都是由kernel在输入图像上经过卷积操作得来，根据卷积操作的逻辑，每个卷积需要<code>K * K * M</code>次乘法和加法完成。因此，对输入图进行一次完整的卷积计算需要的计算量即为<code>Dj * Dj * N * K * K * M</code>，它只与输出图像和Kernel有关，与输入的长宽无关。</p>
+<h3 id="卷积小结"><a href="#卷积小结" class="headerlink" title="卷积小结"></a>卷积小结</h3><p>在计算机视觉领域，卷积通常处理的是3维向量（暂不考虑batch），分别对应到图像的长宽和通道数。kernel就类似于滤镜，不同的kernel可以从输入图中过滤中不同的东西。kernel的长宽是网络设计时需要决定的参数，其通道数与输入图像的通道数一致。kernel的数量也是网络设计时需要决定的参数。它的数量与输出图像的通道数一致。</p>
+<p>直观上来讲，卷积操作就是设计不同的kernel来从输入图中过滤出不同的东西。举个简单的例子，假设输入图是w <em> h </em> 1的，每个像素是int32值，从低到高，每8位分别表示RGB的值。此时，我们就可以设计3个1x1x1的kernel，每个kernel过滤一种颜色，3个kernel就可以将输入图转为w <em> h </em> 3的RGB方式表示的图像。</p>
+<p>以上就是CNN网络中最基础的卷积操作。</p>
 
                 <hr>
                 
 
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/2019/06/09/deeplearning/cnn-building-blocks/" data-toggle="tooltip" data-placement="top" title="CNN Building Blocks - Basic">&larr; Previous Post</a>
-                    </li>
-                    
                     
                     <li class="next">
-                        <a href="/2019/06/02/deeplearning/confusion-matrix/" data-toggle="tooltip" data-placement="top" title="Confusion Matrix">Next Post &rarr;</a>
+                        <a href="/2019/06/04/ffmpeg_frames/" data-toggle="tooltip" data-placement="top" title="Extact frames from video using ffmpeg">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -207,7 +226,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#卷积操作"><span class="toc-text">卷积操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#stride有什么用？"><span class="toc-text">stride有什么用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如果输入图不止一个通道呢？"><span class="toc-text">如果输入图不止一个通道呢？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如果有多个kernel呢？"><span class="toc-text">如果有多个kernel呢？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#padding是什么？"><span class="toc-text">padding是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#卷积操作的参数量和计算量"><span class="toc-text">卷积操作的参数量和计算量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#卷积小结"><span class="toc-text">卷积小结</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
@@ -229,7 +248,7 @@
                     </h5>
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#shell" title="shell">shell</a>
+                        <a class="tag" href="/tags/#deeplearning" title="deeplearning">deeplearning</a>
                         
                     </div>
                 </section>
