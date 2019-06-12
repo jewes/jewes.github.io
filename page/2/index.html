@@ -22,7 +22,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://jewes.github.io/archives/">
+    <link rel="canonical" href="http://jewes.github.io/page/2/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -44,7 +44,7 @@
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="false" data-istags="false
-" data-ishome="false">
+" data-ishome="true">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
@@ -117,6 +117,126 @@
 <!-- Main Content -->
 
 
+<style>
+
+    .custom-haojen-container .post-preview:nth-of-type(1),
+    .custom-haojen-container .post-preview-poetry:nth-of-type(1) {
+        text-align: center;
+        background-repeat: no-repeat;
+        border-radius: 3px;
+        background-size: cover;
+        padding: 0;
+        height: 300px;
+        display: table;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.16);
+    }
+
+    /*去掉诗歌的背景图片*/
+    .custom-haojen-container .post-preview-poetry:nth-of-type(1) {
+        background-image: none !important;
+        background-color: rgba(255, 248, 220, 0.5);
+    }
+
+    .custom-haojen-container .post-preview:nth-child(1) h2,
+    .custom-haojen-container .post-preview:nth-child(1) .post-meta,
+    .custom-haojen-container .post-preview:nth-child(1) .post-subtitle {
+        text-shadow: 0 0 40px rgba(0, 0, 0, 1);
+        letter-spacing: 1px;
+        color: #fff;
+        margin-top: 0;
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+
+    .custom-haojen-container .post-preview:nth-child(1) .post-meta {
+        font-size: .9em;
+        font-weight: 300;
+        margin-top: 0;
+    }
+
+    .custom-haojen-container .post-preview-poetry:nth-child(1) .post-subtitle {
+        letter-spacing: 6px;
+        font-size: 18px;
+        font-family: unset;
+        font-weight: 400;
+        color: rgba(0, 0, 0, .75)
+    }
+
+    /*不显示摘要*/
+    .custom-haojen-container .post-preview:nth-child(1) .post-content-preview {
+        display: none
+    }
+
+    /*只第一个显示背景图片*/
+    .custom-haojen-container .post-preview:not(:nth-child(1)) {
+        background-image: none !important;
+    }
+
+    /*第一个分界线去掉*/
+    .custom-haojen-container hr:nth-of-type(1) {
+        display: none;
+    }
+
+    /*主题*/
+    .custom-haojen-container .post-preview:nth-of-type(1) > a {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    /*诗词标题*/
+    .custom-haojen-container .post-preview-poetry:nth-child(1) h2 {
+        font-size: 35px;
+        font-family: STKaiti;
+        color: rgba(0, 0, 0, .8);
+    }
+
+    .custom-haojen-container .post-preview-poetry:nth-of-type(1) .post-meta {
+        color: #0e2231;
+    }
+
+    @media (max-width: 768px) {
+        .custom-haojen-container .post-preview:nth-child(1) {
+            height: 240px;
+        }
+
+        .custom-haojen-container .post-preview-poetry:nth-child(1) h2 {
+            font-size: 28px !important;
+            margin-top: 0;
+        }
+
+        .custom-haojen-container .post-preview:nth-child(1) .post-subtitle {
+            font-size: 18px;
+            font-weight: 400;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .custom-haojen-container .post-preview:nth-of-type(1) > a {
+            padding: 20px
+        }
+    }
+
+    /*手机屏幕*/
+    @media (max-width: 400px) {
+        .custom-haojen-container .post-preview:nth-child(1) {
+            height: 195px;
+        }
+
+        .custom-haojen-container .post-preview-poetry:nth-child(1) h2 {
+            font-size: 20px !important;
+        }
+
+        .custom-haojen-container .post-preview:nth-child(1) .post-subtitle {
+            font-size: 16px;
+        }
+
+        .custom-haojen-container .post-preview:nth-child(1) a {
+            padding: 30px 20px;
+        }
+    }
+</style>
+
 <!-- Page Header -->
 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
     <div class="row">
@@ -144,217 +264,20 @@
 
 
 <div class="post-preview " style="background-image: url('')">
-    <a href="/2019/06/12/deeplearning/cnn-mobilenet/">
+    <a href="/2019/05/26/new_start/">
         <h2 class="post-title">
-            CNN - MobileNet
+            重新开始
         </h2>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-06-12
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-05-26
         </p>
         
         <div class="post-content-preview">
             <p>
-                MobileNet使得在算力相对弱的移动设备端也能运行神经网络模型。本文来探讨一下MobileNet的特点。
-首先，我们回顾一下标准的卷积操作，卷积的Kernel的shape为K x K x M(M为上一层输出特征图的通道数，也就是本层的输入)，Kernel的个数为N，N为输出特征图的通道数。它..
-            </p>
-        </div>
-    </a>
+                在CSDN上断断续续写了些博客，也算是它的忠实用户。可惜的是CSDN的路子越走越偏。作为一名程序员，在Github上搭建一个博客是标配。于是，放弃了多年使用的CSDN博客，重新开始！
+本着互联网的的迭代开发的思想，先让系统跑起来。以下为博客的基本配置，供参考：
 
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2019/06/09/deeplearning/cnn-building-blocks/">
-        <h2 class="post-title">
-            CNN Building Blocks - Basic
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-06-09
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                卷积操作CNN中的C是Convolutional，也就是卷积。我们首先来看看卷积是什么含义。假设有一根针掉在铺面马赛克的地板上，由于针太小，马赛克的颜色也比较暗，我们无法一眼找到针在哪里。于是我们拿着一个特制的方形有色镜片（该镜片可以过滤到不相干的颜色，有助于看清楚针）在地上从左到右，从上到下，..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2019/06/04/ffmpeg_frames/">
-        <h2 class="post-title">
-            Extact frames from video using ffmpeg
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-06-04
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                记录一下，用ffmpeg从视频文件中提取frame:
-ffmpeg -i &lt;input file&gt;-vf &quot;scale=1280:720,fps=2.5&quot;-q:v 1image-%05d.jpg
-各选项的作用：
-
--i 指定输入的视频文件
--vf &quot;sc..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2019/06/02/deeplearning/confusion-matrix/">
-        <h2 class="post-title">
-            Confusion Matrix
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-06-02
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                在多分类任务中，confusion matrix是一种比较好的方式看查看分类器的性能的指标。
-以下为一个confusion matrix的示例，分类器将输入分成三类，分别是ABC。
-
-
-
-category
-A
-B
-C
-
-
-
-
-A
-90
-5
-5
-
-
-B
-0
-95
-5
-
-
-C
-2
-0
-98
-
-
-
-c..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2019/06/02/numpy-indexing/">
-        <h2 class="post-title">
-            Numpy Indexing
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-06-02
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                Numpy Indexing从numpy的向量中取得需要的元素与从数组中取得元素类似，不过numpy提供了更高级的玩法，一起来看看。
-一维向量假设有向量a=[1,2,3,4]，从a中取得部分元素的方法有：
-
-从中取出一个元素用a[i]，i表示索引。
-从中连续的多个元素，比如取出前三个元素，则使用..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2019/05/31/numpy-reshape/">
-        <h2 class="post-title">
-            Numpy reshape
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-05-31
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                reshapereshape顾名思义就是重新调整向量的shape。reshape后要保证向量的size（也就是元素个数不变）。比如12个元素组成一维向量，其shape是(12,)，可以reshape为(2,6),(6,2),(3,4),(4,3)，但是不能reshape为(2,5)，因为元素数量..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2019/05/31/numpy-expand_dims/">
-        <h2 class="post-title">
-            Numpy expand_dims
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-05-31
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                expand_dimsexpand_dims顾名思义就是扩展向量的维度。我们还是先一个例子来理解这个吧。
-向量a = [1, 2, 3, 4]，其维度为1，其shape为(4,)。
-执行numpu.expand_dims(a, axis=0)表示在第1维前再增加1个维度，新的向量就变成了2维。由..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2019/05/30/numpy-basic/">
-        <h2 class="post-title">
-            Numpy基本概念
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-05-30
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                numpy是机器学习中非常重要和基础的软件包，它提供了机器学习中基本的数据结构（向量）的各种高效操作。本系列记录我在学习过程中的一些心得。
-基础概念首先，numpy中操作的基本对象是向量，向量类似于编程的数组。向量有几个非常重要的基本概念，必须要搞清楚，否则后面对向量的各种操作都很难理解。
-维度..
+采用Hexo作为博客内容的转换工..
             </p>
         </div>
     </a>
@@ -370,10 +293,10 @@ c..
 
 <ul class="pager">
     
-    
-    <li class="next">
-        <a href="/archives/page/2/">Older Posts &rarr;</a>
+    <li class="previous">
+        <a href="/">&larr; Newer Posts</a>
     </li>
+    
     
 </ul>
 
