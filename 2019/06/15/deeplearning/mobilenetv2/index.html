@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="mingjiang&#39;s personal blog">
+    <meta name="keyword" content>
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="Mingjiang" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        MobileNet V2｜Mingjiang&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="http://jewes.github.io/2019/06/15/deeplearning/mobilenetv2/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="true" data-istags="false
+" data-ishome="false">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Mingjiang
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src>
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>MobileNet V2</h1>
+                    
+                    <span class="meta">
+                         作者 Mingjiang Shi
+                        <span>
+                          日期 2019-06-15
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#deeplearning" title="deeplearning">deeplearning</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            MobileNet V2
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h1 id="bottleneck-residual-block"><a href="#bottleneck-residual-block" class="headerlink" title="bottleneck residual block"></a>bottleneck residual block</h1><p>MobileNet v1采用depthwise separable convolution作为其主要的building block来代替标准的卷积操作，以达到减少计算量的目的。而MobileNet v2可以认为是全新的设计，里面有两个核心概念linear Bottleneck和inverted resiudal。构成MobileNet v2的基本结构叫做bottleneck residual block. 如下图所示：</p>
+<p><img src="/2019/06/15/deeplearning/mobilenetv2/brb.png" alt></p>
+<p>图片来自：<a href="https://machinethink.net/" target="_blank" rel="noopener">https://machinethink.net/</a></p>
+<p>bottleneck residual block 包含了三个部分：</p>
+<ol>
+<li>1x1 expansion layer，就是标准的1x1的卷积，它将输入的feature map的通道进行expand。有关超参expand ratio，来控制expand比例（论文作者的实验结果是expand ratio=6的时候效果最好）。比如输入的feature map有24个通道，扩张6倍后变成144个通道。</li>
+<li>与MobileNetv1类似的depthwise convolution</li>
+<li>与MobileNetv1类似的pointwise convolution，在MobileNetv2中被称为了Projection layer，且最后没有relu6的激活函数。</li>
+</ol>
+<p>因为这个Block最后的projection layer没有激活函数，且它的左右是将输出的通道数减少，看起来有点像瓶颈，这就是linear bottleneck。</p>
+<p>对于bottleneck residual block的理解，machinethink的博主给出了一个非常巧妙的类比，expansion layer就像是对输入的feature map做解压缩，然后depthwise convolution对解压缩出的数据做过滤和处理，最后projection layer再一次对数据做压缩。</p>
+<p>对于invertest residual的理解，直观来看它就是将输入和输出直接做element wise的相加，有助于网络误差的传递。至于为什么叫inverted residual，我们得首先看看什么是residual。</p>
+<p>原始的residual connection的结构如下图所示：</p>
+<p><img src="/2019/06/15/deeplearning/mobilenetv2/residual.png" alt></p>
+<p>图片来自towardsdatascience.com</p>
+<p>可以看到它的输入和输出层的通道数是比中间层的通道数多的，而Mobilenetv2的bottleneck residual block中，输入和输出层的通道数比中间层要少，因此论文作者称之为inverted residual。</p>
+<p>以下为inverted residual的图示：</p>
+<p><img src="/2019/06/15/deeplearning/mobilenetv2/inverted_residual.png" alt></p>
+<p>图片来自towardsdatascience.com</p>
+<h1 id="Mobilenet-v2结构"><a href="#Mobilenet-v2结构" class="headerlink" title="Mobilenet v2结构"></a>Mobilenet v2结构</h1><p>了解了MobileNetv2的核心building block后，MobileNetv2的整体网络结构就呼之欲出了。与MobileNetv1类似，也是分成2大部分：</p>
+<ol>
+<li>1个标准的卷积操作+若干个bottleneck residual block</li>
+<li>global average pool和用于分类的dense层</li>
+</ol>
+<p>同样，我们在keras中将mobilenetv2的网络结构打印出来，如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from keras.applications import MobileNetV2</span><br><span class="line">base_mobilenetv2 = MobileNetV2(include_top=True, input_shape=(224,224,3))</span><br><span class="line">print(base_mobilenetv2.summary())</span><br><span class="line"></span><br><span class="line">Output:</span><br><span class="line">__________________________________________________________________________________________________</span><br><span class="line">Layer (type)                    Output Shape         Param #     Connected to                     </span><br><span class="line">==================================================================================================</span><br><span class="line">input_5 (InputLayer)            (None, 224, 224, 3)  0                                            </span><br><span class="line">__________________________________________________________________________________________________</span><br><span class="line">Conv1_pad (ZeroPadding2D)       (None, 225, 225, 3)  0           input_5[0][0]                    </span><br><span class="line">__________________________________________________________________________________________________</span><br><span class="line">Conv1 (Conv2D)                  (None, 112, 112, 32) 864         Conv1_pad[0][0]  </span><br><span class="line">......</span><br><span class="line">out_relu (ReLU)                 (None, 7, 7, 1280)   0           Conv_1_bn[0][0]                  </span><br><span class="line">__________________________________________________________________________________________________</span><br><span class="line">global_average_pooling2d_5 (Glo (None, 1280)         0           out_relu[0][0]                   </span><br><span class="line">__________________________________________________________________________________________________</span><br><span class="line">Logits (Dense)                  (None, 1000)         1281000     global_average_pooling2d_5[0][0] </span><br><span class="line">==================================================================================================</span><br><span class="line">Total params: 3,538,984</span><br><span class="line">Trainable params: 3,504,872</span><br><span class="line">Non-trainable params: 34,112</span><br><span class="line">__________________________________________________________________________________________________</span><br><span class="line">None</span><br></pre></td></tr></table></figure>
+<p>由此可见，mobilenettv2的网络参数为350w左右，比MobileNetv1少了70w个参数。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>Mobilenet v2引入了linear bottleneck和inverted residual两个核心概念，参数量比v1少了近70w，预测的精度却与v1相当。</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2019/06/12/deeplearning/cnn-mobilenet/" data-toggle="tooltip" data-placement="top" title="CNN - MobileNet">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#bottleneck-residual-block"><span class="toc-text">bottleneck residual block</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Mobilenet-v2结构"><span class="toc-text">Mobilenet v2结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#deeplearning" title="deeplearning">deeplearning</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/jewes">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/mjshi">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/jewes">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Mingjiang 2019
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://jewes.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="">
+</body>
+
+</html>
