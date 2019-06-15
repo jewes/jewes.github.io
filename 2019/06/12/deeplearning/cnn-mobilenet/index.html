@@ -204,6 +204,19 @@
 </tbody>
 </table>
 <p>由此可见，mobilenet的参数量和计算量都大幅度减少，如果采用3x3的Kernel的话，那么MobileNet的速度是标准CNN的9倍。因此，MobileNet可以在移动端能进行AI推理。以上就是MobileNetV1的核心。</p>
+<h2 id="depthwise-separable-convolution-block"><a href="#depthwise-separable-convolution-block" class="headerlink" title="depthwise separable convolution block"></a>depthwise separable convolution block</h2><p>depthwise separable convolution block 是组成MobileNet的基本单元，结构如下图所示。在depthwise convolution和pointwise convolution之后分别加了batch normalization和Relu6的激活层。</p>
+<p><img src="/2019/06/12/deeplearning/cnn-mobilenet/dsc.png" alt></p>
+<h1 id="MobileNet的结构"><a href="#MobileNet的结构" class="headerlink" title="MobileNet的结构"></a>MobileNet的结构</h1><p>MobileNet的整体网络结构包括以下两部分：</p>
+<ol>
+<li>一层标准的CNN卷积层+13层depthwise separable convolution block</li>
+<li>global average pooling和最后分类的softmax层</li>
+</ol>
+<p>其中，第一部分为从输入图像中提取特征，第二部分是用于分类。我们在keras中将mobilenet的网络结构打印出来，如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from keras.applications import MobileNet</span><br><span class="line">base_mobilenet = MobileNet(include_top=True, input_shape=(224,224,3))</span><br><span class="line">print(base_mobilenet.summary())</span><br><span class="line"></span><br><span class="line">Output:</span><br><span class="line">Layer (type)                 Output Shape              Param #   </span><br><span class="line">=================================================================</span><br><span class="line">input_2 (InputLayer)         (None, 224, 224, 3)       0         </span><br><span class="line">_________________________________________________________________</span><br><span class="line">......</span><br><span class="line">conv_pw_13_relu (ReLU)       (None, 7, 7, 1024)        0         </span><br><span class="line">_________________________________________________________________</span><br><span class="line">global_average_pooling2d_2 ( (None, 1024)              0         </span><br><span class="line">_________________________________________________________________</span><br><span class="line">reshape_1 (Reshape)          (None, 1, 1, 1024)        0         </span><br><span class="line">_________________________________________________________________</span><br><span class="line">dropout (Dropout)            (None, 1, 1, 1024)        0         </span><br><span class="line">_________________________________________________________________</span><br><span class="line">conv_preds (Conv2D)          (None, 1, 1, 1000)        1025000   </span><br><span class="line">_________________________________________________________________</span><br><span class="line">reshape_2 (Reshape)          (None, 1000)              0         </span><br><span class="line">_________________________________________________________________</span><br><span class="line">act_softmax (Activation)     (None, 1000)              0         </span><br><span class="line">=================================================================</span><br><span class="line">Total params: 4,253,864</span><br><span class="line">Trainable params: 4,231,976</span><br><span class="line">Non-trainable params: 21,888</span><br></pre></td></tr></table></figure>
+<p>我把中间部分省略掉了，只保留了开始和最后部分。可以看到，输入图像是224x224的RGB图像，经过第一部分的若干卷积层后变成了7x7x1024的特征图，然后进行分类。总共的参数量在420w左右。</p>
+<p>分类的一般的做法是，将7x7x1024的特征图进行Flatten变成了1x50176的向量，再通过Dense层进行分类。但是这样的话，最后全连接层的参数量将会有50,176,000个参数，这可能导致网络非常容易过拟合。<br>MobileNet采取的做法是先进行global average pooling，将其变成了1x1024的向量，再接上drop，最后再分类。这样参数量就下降很多，起到了防止过拟合的效果。</p>
+<p>顺便说下Global Average Pooling，它是将输入的特征图的每个通道上的所有元素取平均值，因此7x7x1024的特征图就变成了1x1x1024的特征图。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>MobileNet的核心是depthwise separable convolution block，它采用depthwise的卷积对每个通道分别做卷积，然后采用1x1的pointwise卷积将多个通道特征融合产生新的特征。在最后的分类阶段，采用global average pooling和dropout来防止过拟合。它的计算量是普通卷积网络的1/9，因此MobileNet能够在在移动端运行。</p>
 
                 <hr>
                 
@@ -231,7 +244,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#depthwise-separable-convolution"><span class="toc-text">depthwise separable convolution</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#depthwise-convolution"><span class="toc-text">depthwise convolution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pointwise-convolution"><span class="toc-text">pointwise convolution</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#depthwise-separable-convolution"><span class="toc-text">depthwise separable convolution</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#depthwise-convolution"><span class="toc-text">depthwise convolution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pointwise-convolution"><span class="toc-text">pointwise convolution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#depthwise-separable-convolution-block"><span class="toc-text">depthwise separable convolution block</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MobileNet的结构"><span class="toc-text">MobileNet的结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
                 </div>
             </div>
         </div>
