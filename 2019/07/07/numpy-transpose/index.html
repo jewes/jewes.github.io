@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        Numpy笔记｜Mingjiang&#39;s blog
+        Numpy - 用RGB图像来理解Numpy中的transpose操作｜Mingjiang&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="http://jewes.github.io/2019/05/30/numpy-notes/">
+    <link rel="canonical" href="http://jewes.github.io/2019/07/07/numpy-transpose/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -76,6 +76,14 @@
                         <a href="/">Home</a>
                     </li>
 					
+                    
+                        
+							
+                        <li>
+                            <a href="/drafts/misc/info-theory-ml.html">信息论与机器学习</a>
+                        </li>
+							
+						
                     
 					
 					
@@ -136,12 +144,12 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>Numpy笔记</h1>
+                    <h1>Numpy - 用RGB图像来理解Numpy中的transpose操作</h1>
                     
                     <span class="meta">
                          作者 Mingjiang Shi
                         <span>
-                          日期 2019-05-30
+                          日期 2019-07-07
                          </span>
                     </span>
                     <div class="tags text-center">
@@ -155,7 +163,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            Numpy笔记
+            Numpy - 用RGB图像来理解Numpy中的transpose操作
         </span>
     </div>
 </header>
@@ -166,37 +174,49 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <p>numpy是机器学习中非常重要的软件包，本文是我的一些笔记和理解，希望对你也有帮助。</p>
-<h1 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h1><p>首先，numpy中操作的基本对象是向量，向量类似于编程的数组。向量有几个非常重要的基本概念，必须要搞清楚，否则后面对向量的各种操作都很难理解。</p>
-<h2 id="维度-dimension"><a href="#维度-dimension" class="headerlink" title="维度(dimension)"></a>维度(dimension)</h2><p>我们来看几个例子：</p>
-<p>对于一维向量<code>a = [1,2,3,4]</code>（可理解为数组），我们要找到其中的一个元素使用a[i]，只需要指定一个索引就够了，比如<code>a[0] = 1</code>。</p>
-<p>对于二维向量（可理解为矩阵），找到其中的一个元素需要至少两个索引，比如<code>a[0][0] = 1</code>。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line">[1, 2, 3],</span><br><span class="line">[4, 5, 6],</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>维度的直观理解是：找到向量中的一个元素所需要索引数量的最小个数。</p>
-<h2 id="shape"><a href="#shape" class="headerlink" title="shape"></a>shape</h2><p>shape的中文意思是形状，它表示的是向量在各个维度上元素的个数。</p>
-<p>一维向量<code>[1,2,3]</code>，它的维度是1维，shape是(3)。向量(1,2,3,4)，它的维度也是1维，但它的shape就是(4)。</p>
-<p>上面的二维向量，它的维度是2，shape是（2, 3）。2是怎么来的？假如把最外层的[]去掉，我们得到两个一维向量，所以第1维的shape是2。类似的，3是第二层中向量元素的个数。</p>
-<p>对于N维向量，它的shape可以从最里层开始看起。最里层[]中的元素个数就是shape中最右边的那个值。然后将最里层的向量看成一个数字，以此类推。</p>
-<h2 id="axis"><a href="#axis" class="headerlink" title="axis"></a>axis</h2><p>numpy中的很多函数都有axis这个参数，所以axis也非常有必要理解清楚。 axis可以认为是对维度的索引（从0开始）。axis=0，表示第1维，依次类推。axis=-1表示最高的维度。结合上面shape的理解中，axis=0表示向量中的最外层，axis=-1表示向量中的最里层。后面结合具体的函数再细讲。</p>
-<h2 id="size"><a href="#size" class="headerlink" title="size"></a>size</h2><p>size表示向量中有多少个元素，也就是shape的各个值相乘。</p>
-<p>简单总结一下，dimension表示这个几层中括号，shape表示每层有多少个元素，axis指的哪一层。这个定义不准确，只是帮助理解。</p>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; import numpy as np</span><br><span class="line">&gt;&gt;&gt; a = np.array([1,2])</span><br><span class="line">&gt;&gt;&gt; b = np.array([[1,2],[3,4]])</span><br><span class="line">&gt;&gt;&gt; a.ndim, b.ndim</span><br><span class="line">(1, 2)</span><br><span class="line">&gt;&gt;&gt; a.shape</span><br><span class="line">(2,)</span><br><span class="line">&gt;&gt;&gt; b.shape</span><br><span class="line">(2, 2)</span><br><span class="line">&gt;&gt;&gt; a.size</span><br><span class="line">2</span><br><span class="line">&gt;&gt;&gt; b.size</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
-<h1 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h1><h2 id="reshape"><a href="#reshape" class="headerlink" title="reshape"></a>reshape</h2><p>reshape顾名思义就是重新调整向量的shape。reshape后要保证向量的size（也就是元素个数不变）。比如12个元素组成一维向量，其shape是(12,)，可以reshape为(2,6),(6,2),(3,4),(4,3)，但是不能reshape为(2,5)，因为元素数量不对了。那reshape具体是怎么操作的呢？我们来看例子。</p>
-<p>一维向量<code>a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]</code>要reshape为(2,6)。我们从左边开始看起，最左边的维度的shape是2，那边表示最外层包含2个元素，那么就相当于把a的12个元素分成了2份，正好每份6个元素，组成了第二维。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line"> [ 1,  2,  3,  4,  5,  6],</span><br><span class="line"> [ 7,  8,  9, 10, 11, 12]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; a = np.array([i for i in range(1,13)])</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">array([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12])</span><br><span class="line">&gt;&gt;&gt; a.reshape(2,6)</span><br><span class="line">array([[ 1,  2,  3,  4,  5,  6],</span><br><span class="line">       [ 7,  8,  9, 10, 11, 12]])</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
-<p>继续，我们把a reshape为(2,3,2)，还是先从新的shape的最左边开始，最左边为2，于是将其分成2份，变成了</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line"> [ 1,  2,  3,  4,  5,  6],</span><br><span class="line"> [ 7,  8,  9, 10, 11, 12]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>接着，第二维的shape维3，于是将第一维中的元素分成3份，每份正好是2个元素，于是，</p>
-<p><code>[1,2,3,4,5,6]</code>变成了</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line"> [ 1,  2],</span><br><span class="line"> [ 3,  4],</span><br><span class="line"> [ 5,  6]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p><code>[ 7,  8,  9, 10, 11, 12]</code>变成了</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line"> [ 7,  8],</span><br><span class="line"> [ 9, 10],</span><br><span class="line"> [11, 12]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>最后，再把它们放回去，于是<code>a.reshape(2,3,2)</code>变成了</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line"> [</span><br><span class="line">  [ 1,  2],</span><br><span class="line">  [ 3,  4],</span><br><span class="line">  [ 5,  6]</span><br><span class="line"> ],</span><br><span class="line"> [</span><br><span class="line">  [ 7,  8],</span><br><span class="line">  [ 9, 10],</span><br><span class="line">  [11, 12]</span><br><span class="line"> ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>你可以试着推导一下a.reshape(4,3)的结果是否和程序跑出来的一致。</p>
-<p>待续…</p>
+                <p>网上关于numpy中tranpose的解释都是在说结果是怎么计算出来的，但是np.transpose实际的意义是什么却很少有说明。本文就从RGB图片的角度来说明一下np.transpose的意义。</p>
+<p>首先，我们生成一张2x2的RGB图片，每个像素有三个值分别是RGB的值，用numpy表示该图就有12个元素。下面是生成该图的代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">arr = np.array([255,255,255, 255,0,0, 0,255,0, 0,0,255]).reshape(2,2,-1)</span><br><span class="line"></span><br><span class="line"># output</span><br><span class="line">array([[[255, 255, 255],  # 白色块</span><br><span class="line">        [255,   0,   0]], # 红色块</span><br><span class="line"></span><br><span class="line">       [[  0, 255,   0],  # 绿色块</span><br><span class="line">        [  0,   0, 255]]])# 蓝色块</span><br></pre></td></tr></table></figure>
+<p>对应的图片如下：</p>
+<p><img src="/2019/07/07/numpy-transpose/rgb.png" alt></p>
+<p>这个3维数组中，第0维有两个元素，分别表示图片的2行。第1维中也有两个元素，分别表示每行的2列。第二维中有3个元素，表示每个像素的RGB值。熟悉RGB图片的话，应该应该知道[255,255,255]表示白色，[255,0,0]表示红色，等。</p>
+<p>好，以上就是相关背景。由于上述数组是3维的，因此np.transpose总共有6种可能，分别是：</p>
+<ul>
+<li>np.transpose(arr, (0, 1, 2))</li>
+<li>np.transpose(arr, (0, 2, 1))</li>
+<li>np.transpose(arr, (1, 0, 2))</li>
+<li>np.transpose(arr, (1, 2, 0))</li>
+<li>np.transpose(arr, (2, 0, 1))</li>
+<li>np.transpose(arr, (2, 1, 0))</li>
+</ul>
+<p>下面我们来看看原图经过transpose以后分别是什么意思？np.transpose(arr, (0, 1, 2))就是原始数组，所以略过。</p>
+<h2 id="a2-np-transpose-arr-0-2-1"><a href="#a2-np-transpose-arr-0-2-1" class="headerlink" title="a2=np.transpose(arr, (0, 2, 1))"></a>a2=np.transpose(arr, (0, 2, 1))</h2><p>这里是将第1和2维（数组的维度从0开始计算）交换，因此：</p>
+<ul>
+<li>tranpose后的数组的第0维依然表示原始图片的行。</li>
+<li>tranpose后的数组的第1维数据是从原始图片中的第2维中取得，因此它获取到的是原始图片中的RGB分量，因此这个操作是将第三维中的RGB分别提取出来并组合在一起形成了第1维。</li>
+<li>tranpose后的数组的第2维数据是从原始图片中的第1维中取得。</li>
+</ul>
+<p>结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">array([[[255, 255],  -&gt; 255表示原始图片中白色块的R分量，255表示红色块的R分量。</span><br><span class="line">        [255,   0],  -&gt; 255表示原始图片中白色块的G分量，0表示红色块的G分量。</span><br><span class="line">        [255,   0]], -&gt; 255表示原始图片中白色块的B分量，0表示红色块的B分量。</span><br><span class="line"></span><br><span class="line">       [[  0,   0],  -&gt; 0表示原始图片中绿色块的R分量，  0表示蓝色块的R分量。</span><br><span class="line">        [255,   0],  -&gt; 255表示原始图片中绿色块的G分量，0表示蓝色块的G分量。</span><br><span class="line">        [  0, 255]]])-&gt; 0表示原始图片中绿色块的B分量，  255表示蓝色块的B分量。</span><br></pre></td></tr></table></figure>
+<h2 id="a3-np-transpose-arr-1-0-2"><a href="#a3-np-transpose-arr-1-0-2" class="headerlink" title="a3=np.transpose(arr, (1, 0, 2))"></a>a3=np.transpose(arr, (1, 0, 2))</h2><p>这个操作中RGB分量的位置保持不变，只是对行列进行交换，直观上来讲就是将二维图片进行转置。转换后的图片如下，可见红绿块交换了位置：</p>
+<p><img src="/2019/07/07/numpy-transpose/rgb_102.png" alt></p>
+<h2 id="a4-np-transpose-arr-1-2-0"><a href="#a4-np-transpose-arr-1-2-0" class="headerlink" title="a4=np.transpose(arr, (1, 2, 0))"></a>a4=np.transpose(arr, (1, 2, 0))</h2><p>这个操作三个维度都发生了变化，转换后的数组a4的</p>
+<ul>
+<li>第0维是从原始数组中的第1维获取数据，因此a4的第0维表示原始图片中的列</li>
+<li>第1维是从原始数组中的第2维获取数据，因此是将RGB分量分别提取出来，合并在一起形成第1维</li>
+<li>第2位是从原始数据中的第0维获取数据，因此是原始图片中的行。</li>
+</ul>
+<p>结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">array([[[255,   0], -&gt; 255表示原始图片中白色块的R分量，0表示绿色块的R分量。</span><br><span class="line">        [255, 255], -&gt; 255表示原始图片中白色块的G分量，255表示绿色块的G分量。</span><br><span class="line">        [255,   0]],-&gt; 255表示原始图片中白色块的B分量，0表示绿色块的B分量。</span><br><span class="line"></span><br><span class="line">       [[255,   0],   -&gt; 255表示原始图片中红色块的R分量，0表示蓝色块的R分量。</span><br><span class="line">        [  0,   0],   -&gt; 255表示原始图片中红色块的G分量，0表示蓝色块的G分量。</span><br><span class="line">        [  0, 255]]]) -&gt; 255表示原始图片中红色块的B分量，255表示蓝色块的B分量。</span><br></pre></td></tr></table></figure>
+<p>可以推演一下，上面6个数字组成的3x2的数组表示原始图片的第0列的数据。这个3x2的数组的行分别表示RGB分量，列表示原始图片中的行。</p>
+<h2 id="a5-np-transpose-arr-2-0-1"><a href="#a5-np-transpose-arr-2-0-1" class="headerlink" title="a5=np.transpose(arr, (2, 0, 1))"></a>a5=np.transpose(arr, (2, 0, 1))</h2><p>这个操作是将RGB分量交换到了第0维，行列关系不变</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">array([[[255, 255], # 分别表示4个像素的R分量</span><br><span class="line">        [  0,   0]],</span><br><span class="line"></span><br><span class="line">       [[255,   0], # 分别表示4个像素的G分量</span><br><span class="line">        [255,   0]],</span><br><span class="line"></span><br><span class="line">       [[255,   0], # 分别表示4个像素的B分量</span><br><span class="line">        [  0, 255]]])</span><br></pre></td></tr></table></figure>
+<p>如果我们将其excel中的sheet来理解的话，它是将RGB分别组织成了3个sheet，每个sheet中只包含RGB中的一种。每个sheet内的table就分别表示原始图像对于位置的颜色分量。</p>
+<h2 id="a6-np-transpose-arr-2-1-0"><a href="#a6-np-transpose-arr-2-1-0" class="headerlink" title="a6=np.transpose(arr, (2, 1, 0))"></a>a6=np.transpose(arr, (2, 1, 0))</h2><p>这个操作是将RGB分量交换到了第0维，同时行列关系交换，结果就是在上面结果的基础上对每个子数据做转置。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">array([[[255,   0], # 分别表示4个像素的R分量，但是行列关系交换</span><br><span class="line">        [255,   0]],</span><br><span class="line"></span><br><span class="line">       [[255, 255],</span><br><span class="line">        [  0,   0]],</span><br><span class="line"></span><br><span class="line">       [[255,   0],</span><br><span class="line">        [  0, 255]]])</span><br></pre></td></tr></table></figure>
+<p>最后，试图总结一下transpose的一般理解，假设transpose的axes参数(x,y,z)，那么transpose后的结果的第0维的数据就是从原始数组的第x维去取数据，它的作用就是将原始数组的x维的数据进行了分组。比如上面的(2,1,0)就是将原始图片中的RGB分量分别提取出来放到了一起。这些数据的内部组织方式就是由后面两个参数觉得的。</p>
+<p>更一般的来讲，多维数组从低维到高维是逐渐细化数据的一个过程。RGB图片的第0维是按行来组织数据，然后再按列来组织数据，然后是按RGB分量来组织数据。transpose是调整了组织数据的次序。</p>
+<p>这个transpose操作不是很好理解，我只是将我的思考记录下来，可能我也没有表达清楚。如果说我希望你能从本文得到什么的话，就是要从数组的实际意义中去理解tranpose后的结果，这样会比从纯数学上去理解会容易一些。</p>
 
                 <hr>
                 
@@ -205,7 +225,7 @@
                     
                     
                     <li class="next">
-                        <a href="/2019/05/26/new_start/" data-toggle="tooltip" data-placement="top" title="重新开始">Next Post &rarr;</a>
+                        <a href="/2019/06/15/deeplearning/mobilenetv2/" data-toggle="tooltip" data-placement="top" title="MobileNet V2">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -224,7 +244,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基础概念"><span class="toc-text">基础概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#维度-dimension"><span class="toc-text">维度(dimension)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shape"><span class="toc-text">shape</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#axis"><span class="toc-text">axis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#size"><span class="toc-text">size</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#例子"><span class="toc-text">例子</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常用方法"><span class="toc-text">常用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#reshape"><span class="toc-text">reshape</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#a2-np-transpose-arr-0-2-1"><span class="toc-text">a2=np.transpose(arr, (0, 2, 1))</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#a3-np-transpose-arr-1-0-2"><span class="toc-text">a3=np.transpose(arr, (1, 0, 2))</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#a4-np-transpose-arr-1-2-0"><span class="toc-text">a4=np.transpose(arr, (1, 2, 0))</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#a5-np-transpose-arr-2-0-1"><span class="toc-text">a5=np.transpose(arr, (2, 0, 1))</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#a6-np-transpose-arr-2-1-0"><span class="toc-text">a6=np.transpose(arr, (2, 1, 0))</span></a></li></ol>
                 </div>
             </div>
         </div>

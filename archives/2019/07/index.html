@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        Extact frames from video using ffmpeg｜Mingjiang&#39;s blog
+        Mingjiang&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="http://jewes.github.io/2019/06/04/ffmpeg_frames/">
+    <link rel="canonical" href="http://jewes.github.io/archives/2019/07/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -43,7 +43,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="true" data-istags="false
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="false" data-istags="false
 " data-ishome="false">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -124,138 +124,153 @@
 
 <!-- Main Content -->
 
-<!--only post-->
 
-
-<img class="wechat-title-img" src>
-
-
-<style>
-    
-    header.intro-header {
-        background-image: url('')
-    }
-
-    
-</style>
-
-<header class="intro-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
-                <div class="post-heading">
-                    <h1>Extact frames from video using ffmpeg</h1>
-                    
-                    <span class="meta">
-                         作者 Mingjiang Shi
-                        <span>
-                          日期 2019-06-04
-                         </span>
-                    </span>
-                    <div class="tags text-center">
-                        
-                        <a class="tag" href="/tags/#shell" title="shell">shell</a>
-                        
+<!-- Page Header -->
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
+    <div class="row">
+        <header class="intro-header">
+            <div class="container">
+                <div class="site-heading text-center">
+                    <div class="about-me">
+                        <!--移动端头部显示-->
+                        <img src>
+                        <h5><a href="/about/">Mingjiang Shi</a></h5>
+                        <p></p>
                     </div>
                 </div>
             </div>
-        </div>
+        </header>
     </div>
-    <div class="post-title-haojen">
-        <span>
-            Extact frames from video using ffmpeg
-        </span>
-    </div>
-</header>
+</div>
+<!-- Main Content -->
+<div class="container custom-haojen-container">
+    <!-- Post Container -->
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
+            <!-- Main Content -->
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-            <!-- Post Container -->
-            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <p>记录一下，用ffmpeg从视频文件中提取frame:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ffmpeg </span><br><span class="line">-i &lt;input file&gt;</span><br><span class="line">-vf &quot;scale=1280:720,fps=2.5&quot;</span><br><span class="line">-q:v 1</span><br><span class="line">image-%05d.jpg</span><br></pre></td></tr></table></figure>
-<p>各选项的作用：</p>
-<ul>
-<li><code>-i</code> 指定输入的视频文件</li>
-<li><code>-vf &quot;scale=1280:720,fps=2.5&quot;</code> 将提取出的图片缩放为1280x720, fps=2.5表示平均每秒钟提取2.5张图片</li>
-<li><code>-q:v 1</code> 表示jpg图片的质量，可选值从1-31, 数值越小质量越高</li>
-<li>最后的<code>image-%5d.jpg</code> 表示指定输出文件的文件名，image为前缀，%05d为序号。</li>
+
+
+<div class="post-preview " style="background-image: url('')">
+    <a href="/2019/07/07/numpy-transpose/">
+        <h2 class="post-title">
+            Numpy - 用RGB图像来理解Numpy中的transpose操作
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-07-07
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                网上关于numpy中tranpose的解释都是在说结果是怎么计算出来的，但是np.transpose实际的意义是什么却很少有说明。本文就从RGB图片的角度来说明一下np.transpose的意义。
+首先，我们生成一张2x2的RGB图片，每个像素有三个值分别是RGB的值，用numpy表示该图就有1..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+
+<!-- 翻页 pager -->
+
+<ul class="pager">
+    
+    
 </ul>
-<p>暂时只用到了这些选项，以后再补充。</p>
 
-                <hr>
-                
 
-                <ul class="pager">
+        </div>
+        <!-- Sidebar Container -->
+        <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+
+            <!-- About Me -->
+            <section class="visible-md visible-lg" style="padding: 0 18px">
+                <div class="short-about">
+                    <!--侧边栏头像-->
                     
-                    <li class="previous">
-                        <a href="/2019/06/09/deeplearning/cnn-building-blocks/" data-toggle="tooltip" data-placement="top" title="CNN Building Blocks - Basic">&larr; Previous Post</a>
-                    </li>
+                    <h5><a href="/about/">Mingjiang Shi</a></h5>
+                    
+                    <hr>
+                    <!-- SNS Link 社交 -->
+                    <ul class="list-inline">
+                        
+                        
+                        <li>
+                            <a target="_blank" href="https://twitter.com/jewes">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                        </span>
+                            </a>
+                        </li>
+                        
+                        
+
+                        
+                        <li>
+                            <a target="_blank" href="http://weibo.com/mjshi">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                                        </span>
+                            </a>
+                        </li>
+                        
+
+                        
+
+                        
+                        <li>
+                            <a target="_blank" href="https://github.com/jewes">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                        </span>
+                            </a>
+                        </li>
+                        
+
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Featured Tags  标签 -->
+            
+            <section>
+                <div class="tags">
                     
                     
-                    <li class="next">
-                        <a href="/2019/06/02/deeplearning/confusion-matrix/" data-toggle="tooltip" data-placement="top" title="Confusion Matrix">Next Post &rarr;</a>
-                    </li>
                     
-                </ul>
-
-                
-
-                
-
-
-                <!--加入新的评论系统-->
-                
-
-                
-
-            </div>
-
-            <div class="hidden-xs col-sm-3 toc-col">
-                <div class="toc-wrap">
+                    
+                    <a href="/tags/#numpy" title="numpy" rel="5">numpy</a>
+                    
+                    
+                    
+                    
+                    
+                    <a href="/tags/#deeplearning" title="deeplearning" rel="3">deeplearning</a>
+                    
                     
                 </div>
-            </div>
+            </section>
+            
+
+            
+
         </div>
-
-        <div class="row">
-            <!-- Sidebar Container -->
-
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-                <!-- Featured Tags -->
-                
-                <section>
-                    <!-- no hr -->
-                    <h5 class="text-center">
-                        <a href="/tags/">FEATURED TAGS</a>
-                    </h5>
-                    <div class="tags">
-                        
-                        <a class="tag" href="/tags/#shell" title="shell">shell</a>
-                        
-                    </div>
-                </section>
-                
-
-                <!-- Friends Blog -->
-                
-            </div>
-        </div>
-
     </div>
-</article>
-
-
-
-
-
-
+</div>
 
 <!-- Footer -->
 <!-- Footer -->
