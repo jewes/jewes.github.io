@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        Mingjiang&#39;s blog
+        SS+obfs简单笔记｜Mingjiang&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="http://jewes.github.io/archives/2019/05/">
+    <link rel="canonical" href="http://jewes.github.io/2019/09/22/ssr-note/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -43,7 +43,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="false" data-istags="false
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="true" data-istags="false
 " data-ishome="false">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -116,225 +116,146 @@
 
 <!-- Main Content -->
 
+<!--only post-->
 
-<!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
-    <div class="row">
-        <header class="intro-header">
-            <div class="container">
-                <div class="site-heading text-center">
-                    <div class="about-me">
-                        <!--移动端头部显示-->
-                        <img src>
-                        <h5><a href="/about/">Mingjiang Shi</a></h5>
-                        <p></p>
+
+<img class="wechat-title-img" src>
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>SS+obfs简单笔记</h1>
+                    
+                    <span class="meta">
+                         作者 Mingjiang Shi
+                        <span>
+                          日期 2019-09-22
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
     </div>
-</div>
-<!-- Main Content -->
-<div class="container custom-haojen-container">
-    <!-- Post Container -->
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            <!-- Main Content -->
+    <div class="post-title-haojen">
+        <span>
+            SS+obfs简单笔记
+        </span>
+    </div>
+</header>
 
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2019/05/31/numpy-reshape/">
-        <h2 class="post-title">
-            Numpy reshape
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-05-31
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                reshapereshape顾名思义就是重新调整向量的shape。reshape后要保证向量的size（也就是元素个数不变）。比如12个元素组成一维向量，其shape是(12,)，可以reshape为(2,6),(6,2),(3,4),(4,3)，但是不能reshape为(2,5)，因为元素数量..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2019/05/31/numpy-expand_dims/">
-        <h2 class="post-title">
-            Numpy expand_dims
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-05-31
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                expand_dimsexpand_dims顾名思义就是扩展向量的维度。我们还是先一个例子来理解这个吧。
-向量a = [1, 2, 3, 4]，其维度为1，其shape为(4,)。
-执行numpu.expand_dims(a, axis=0)表示在第1维前再增加1个维度，新的向量就变成了2维。由..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2019/05/30/numpy-basic/">
-        <h2 class="post-title">
-            Numpy基本概念
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-05-30
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                numpy是机器学习中非常重要和基础的软件包，它提供了机器学习中基本的数据结构（向量）的各种高效操作。本系列记录我在学习过程中的一些心得。
-基础概念首先，numpy中操作的基本对象是向量，向量类似于编程的数组。向量有几个非常重要的基本概念，必须要搞清楚，否则后面对向量的各种操作都很难理解。
-维度..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2019/05/26/new_start/">
-        <h2 class="post-title">
-            重新开始
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-05-26
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                在CSDN上断断续续写了些博客，也算是它的忠实用户。可惜的是CSDN的路子越走越偏。作为一名程序员，在Github上搭建一个博客是标配。于是，放弃了多年使用的CSDN博客，重新开始！
-本着互联网的的迭代开发的思想，先让系统跑起来。以下为博客的基本配置，供参考：
-
-采用Hexo作为博客内容的转换工..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-
-<!-- 翻页 pager -->
-
-<ul class="pager">
-    
-    
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>做个简单的记录，懂的人自然懂。</p>
+<h1 id="1-为什么SS在关键的时候不行了？"><a href="#1-为什么SS在关键的时候不行了？" class="headerlink" title="1. 为什么SS在关键的时候不行了？"></a>1. 为什么SS在关键的时候不行了？</h1><p>因为SS用的是非标准端口和协议，运营商和墙要封你简直太容易了。那怎么办呢？把SS的数据包放到http/https的请求包里面，走标准的https协议和端口，这样看起来就是普通的上网请求。</p>
+<p>SS是通过插件的方式来支持，常见的插件有</p>
+<ul>
+<li>simple-obfs</li>
+<li>v2ray-plugin</li>
+</ul>
+<h1 id="2-怎么做？"><a href="#2-怎么做？" class="headerlink" title="2. 怎么做？"></a>2. 怎么做？</h1><h2 id="simple-obfs使用"><a href="#simple-obfs使用" class="headerlink" title="simple-obfs使用"></a>simple-obfs使用</h2><ul>
+<li><p>服务端：安装shadowsock-libev</p>
+<p>一键安装脚本：<a href="https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh" target="_blank" rel="noopener">https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh</a><br>安装的时候把obfs插件也安装上。最终生成的配置文件/etc/shadowsocks-libev/config.json如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;server&quot;:&quot;0.0.0.0&quot;,</span><br><span class="line">  &quot;server_port&quot;:443,</span><br><span class="line">  &quot;password&quot;:&quot;your_password&quot;,</span><br><span class="line">  &quot;timeout&quot;:300,</span><br><span class="line">  &quot;user&quot;:&quot;nobody&quot;,</span><br><span class="line">  &quot;method&quot;:&quot;chacha20-ietf-poly1305&quot;,</span><br><span class="line">  &quot;fast_open&quot;:true,</span><br><span class="line">  &quot;nameserver&quot;:&quot;8.8.8.8&quot;,</span><br><span class="line">  &quot;mode&quot;:&quot;tcp_and_udp&quot;,</span><br><span class="line">  &quot;plugin&quot;:&quot;obfs-server&quot;,</span><br><span class="line">  &quot;plugin_opts&quot;:&quot;obfs=tls&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Mac客户端：配置和之前一样，只是在配置的地方增加2个选项：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">plugin: obfs-local</span><br><span class="line">plugin_opt: obfs=tls;obfs-host=www.baidu.com</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>Android客户端：需要额外安装simple-obfs-android</li>
+</ul>
+<h2 id="v2ray-plugin使用"><a href="#v2ray-plugin使用" class="headerlink" title="v2ray-plugin使用"></a>v2ray-plugin使用</h2><p>v2ray-plugin的使用与simple-obfs类似，相对配置比较复杂一些。测试下来速度比simple-obfs还要慢，就不细说了。</p>
+<h1 id="3-还能怎么玩？"><a href="#3-还能怎么玩？" class="headerlink" title="3.还能怎么玩？"></a>3.还能怎么玩？</h1><ul>
+<li>因为SS请求被封装到了标准的https协议中，那么还可以在前端挂CDN做加速。是不是没想到还能这么玩？这个还没有试过。</li>
+</ul>
+<h1 id="4-其他"><a href="#4-其他" class="headerlink" title="4. 其他"></a>4. 其他</h1><ul>
+<li>开启BBR拥塞算法： <a href="https://github.com/teddysun/across/raw/master/bbr.sh" target="_blank" rel="noopener">https://github.com/teddysun/across/raw/master/bbr.sh</a></li>
 </ul>
 
+                <hr>
+                
 
-        </div>
-        <!-- Sidebar Container -->
-        <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-
-            <!-- About Me -->
-            <section class="visible-md visible-lg" style="padding: 0 18px">
-                <div class="short-about">
-                    <!--侧边栏头像-->
+                <ul class="pager">
                     
-                    <h5><a href="/about/">Mingjiang Shi</a></h5>
                     
-                    <hr>
-                    <!-- SNS Link 社交 -->
-                    <ul class="list-inline">
-                        
-                        
-                        <li>
-                            <a target="_blank" href="https://twitter.com/jewes">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-                        
+                    <li class="next">
+                        <a href="/2019/07/07/numpy-transpose/" data-toggle="tooltip" data-placement="top" title="Numpy - 用RGB图像来理解Numpy中的transpose操作">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
 
-                        
-                        <li>
-                            <a target="_blank" href="http://weibo.com/mjshi">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
+                
 
-                        
+                
 
-                        
-                        <li>
-                            <a target="_blank" href="https://github.com/jewes">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
 
-                        
-                    </ul>
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-为什么SS在关键的时候不行了？"><span class="toc-text">1. 为什么SS在关键的时候不行了？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-怎么做？"><span class="toc-text">2. 怎么做？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#simple-obfs使用"><span class="toc-text">simple-obfs使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#v2ray-plugin使用"><span class="toc-text">v2ray-plugin使用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-还能怎么玩？"><span class="toc-text">3.还能怎么玩？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-其他"><span class="toc-text">4. 其他</span></a></li></ol>
                 </div>
-            </section>
-
-            <!-- Featured Tags  标签 -->
-            
-            <section>
-                <div class="tags">
-                    
-                    
-                    
-                    
-                    <a href="/tags/#numpy" title="numpy" rel="5">numpy</a>
-                    
-                    
-                    
-                    <a href="/tags/#deeplearning" title="deeplearning" rel="3">deeplearning</a>
-                    
-                    
-                    
-                    
-                </div>
-            </section>
-            
-
-            
-
+            </div>
         </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
     </div>
-</div>
+</article>
+
+
+
+
+
+
 
 <!-- Footer -->
 <!-- Footer -->

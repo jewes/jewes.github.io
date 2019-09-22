@@ -22,7 +22,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://jewes.github.io/archives/2019/05/">
+    <link rel="canonical" href="http://jewes.github.io/archives/2019/09/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -144,90 +144,19 @@
 
 
 <div class="post-preview " style="background-image: url('')">
-    <a href="/2019/05/31/numpy-reshape/">
+    <a href="/2019/09/22/ssr-note/">
         <h2 class="post-title">
-            Numpy reshape
+            SS+obfs简单笔记
         </h2>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-05-31
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-09-22
         </p>
         
         <div class="post-content-preview">
             <p>
-                reshapereshape顾名思义就是重新调整向量的shape。reshape后要保证向量的size（也就是元素个数不变）。比如12个元素组成一维向量，其shape是(12,)，可以reshape为(2,6),(6,2),(3,4),(4,3)，但是不能reshape为(2,5)，因为元素数量..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2019/05/31/numpy-expand_dims/">
-        <h2 class="post-title">
-            Numpy expand_dims
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-05-31
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                expand_dimsexpand_dims顾名思义就是扩展向量的维度。我们还是先一个例子来理解这个吧。
-向量a = [1, 2, 3, 4]，其维度为1，其shape为(4,)。
-执行numpu.expand_dims(a, axis=0)表示在第1维前再增加1个维度，新的向量就变成了2维。由..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2019/05/30/numpy-basic/">
-        <h2 class="post-title">
-            Numpy基本概念
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-05-30
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                numpy是机器学习中非常重要和基础的软件包，它提供了机器学习中基本的数据结构（向量）的各种高效操作。本系列记录我在学习过程中的一些心得。
-基础概念首先，numpy中操作的基本对象是向量，向量类似于编程的数组。向量有几个非常重要的基本概念，必须要搞清楚，否则后面对向量的各种操作都很难理解。
-维度..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2019/05/26/new_start/">
-        <h2 class="post-title">
-            重新开始
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-05-26
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                在CSDN上断断续续写了些博客，也算是它的忠实用户。可惜的是CSDN的路子越走越偏。作为一名程序员，在Github上搭建一个博客是标配。于是，放弃了多年使用的CSDN博客，重新开始！
-本着互联网的的迭代开发的思想，先让系统跑起来。以下为博客的基本配置，供参考：
-
-采用Hexo作为博客内容的转换工..
+                做个简单的记录，懂的人自然懂。
+1. 为什么SS在关键的时候不行了？因为SS用的是非标准端口和协议，运营商和墙要封你简直太容易了。那怎么办呢？把SS的数据包放到http/https的请求包里面，走标准的https协议和端口，这样看起来就是普通的上网请求。
+SS是通过插件的方式来支持，常见的插件有..
             </p>
         </div>
     </a>
